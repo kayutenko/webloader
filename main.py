@@ -35,7 +35,7 @@ app.config.update(dict(
     USERNAME='admin',
     PASSWORD='default',
     CELERY_BACKEND= 'mongodb://localhost/celery',
-    CELERY_BROKER_URL= 'amqp://guest:guest@localhost:5672//'
+    CELERY_BROKER_URL= 'amqp://kayutenko:kayutenko@localhost:5672//'
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
@@ -146,7 +146,7 @@ def get_parsed_data(task_id):
         'result': str(async_result.result),
         'task_id': str(async_result.task_id)
     })
-
+ce
 
 if __name__ == '__main__':
     app.run(port=getuid() + ADDITIVE_FOR_UID, debug=True)
