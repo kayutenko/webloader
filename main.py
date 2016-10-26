@@ -146,7 +146,6 @@ def get_parsed_data(task_id):
         'result': str(async_result.result),
         'task_id': str(async_result.task_id)
     })
-ce
 
 if __name__ == '__main__':
     app.run(port=getuid() + ADDITIVE_FOR_UID, debug=True)
