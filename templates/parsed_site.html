@@ -1,8 +1,16 @@
 {% macro parsed_site() %}
 <body>
-<div class="container">
+<div class="container-fluid">
+<nav class="navbar navbar-default navbar-static-top">
+<div class="container-fluid">
+<div class="navbar-header">
+<div class="parser_select"><a class="navbar-brand" href="#">This is an sample web-page</a></div>
+</div>
+</div>
+</nav>
+<div class="container-fluid">
 <div class="row">
-<div class="col-md-8 col-md-offset-1">
+<div class="col-md-12">
 <div class="panel panel-default">
 <div class="parser_select"><div class="panel-heading author">Author</div></div>
 <div class="parser_select"><div class="panel-body review">
@@ -30,4 +38,4 @@
 </div>
 </div>
 </div>
-</body>{% endmacro %}
+</div></body>{% endmacro %}

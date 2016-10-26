@@ -6,6 +6,9 @@ import sqlite3
 import sys
 import json
 from parse_webpage import parse_doc
+
+
+
 app = Flask(__name__)
 app.config.from_object(__name__)
 from time import sleep
@@ -35,12 +38,12 @@ app.config.update(dict(
     USERNAME='admin',
     PASSWORD='default',
     CELERY_BACKEND= 'mongodb://localhost/celery',
-    CELERY_BROKER_URL= 'amqp://kayutenko:kayutenko@localhost:5672//'
+    CELERY_BROKER_URL= 'amqp://guest:guest@localhost:5672//'
 ))
 app.config.from_envvar('FLASKR_SETTINGS', silent=True)
 
 def make_celery(app):
-    celery = Celery('backend.main', backend=app.config['CELERY_BACKEND'],
+    celery = Celery('main', backend=app.config['CELERY_BACKEND'],
                     broker=app.config['CELERY_BROKER_URL'])
     celery.conf.update(app.config)
     TaskBase = celery.Task
@@ -99,6 +102,8 @@ def close_db(error):
 
 log = open('log.txt', 'w', encoding='utf-8')
 
+# session['logged_in'] = False
+
 @app.route('/', methods=['GET', 'POST'])
 def hello_loader():
     if session['logged_in']:
@@ -106,8 +111,7 @@ def hello_loader():
         data = db.execute("select email, site_to_parse from users order by id desc").fetchone()
         site_to_parse = data['site_to_parse']
         eprint(site_to_parse)
-        parsed_site = parse_doc(site_to_parse, os.path.join('.\\templates\\parsed_site.html'))
-        # parsed_site = '.\\static\\temp\parsed_site.html'
+        parse_doc(site_to_parse, os.path.join('.\\templates\\parsed_site.html'))
         return render_template("index.html", current_user=data['email'])
     else:
         return redirect(url_for("welcome_screen"))
@@ -128,9 +132,8 @@ def get_parsing_config():
     request.get_json()
     if request.method == 'POST':
         objects = request.get_json(cache=True, force=True)
-        if objects:
-            task_id = celery_parse_site.delay()
-            return jsonify({'status': 'OK', 'task_id': str(task_id)})
+        task_id = celery_parse_site.delay()
+        return jsonify({'status': 'OK', 'task_id': str(task_id)})
     return jsonify({'status': 'OK'})
 
 @celery.task

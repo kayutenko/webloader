@@ -1,7 +1,21 @@
 $(document).ready(function() {
+$('[data-toggle="popover"]').popover();
 
+$('#add_object_button').popover({delay:{show: 500, hide: 20},
+                                    animation:true,
+                                    title:"Create an object",
+                                    placement: 'right',
+                                    trigger: "hover click",
+                                    content: `Create an object that will represent an entity with attributes.
+                                    E.g. a review with attributes 'Author' and 'Text'`,
+                                    container:'body'
+                                    }).popover('toggle');
+
+
+$('#add_object_button').popover({delay:{show: 600, hide: 0}}).popover('toggle');
 var objects = {objects:{}};
 var current_object;
+var clicked=false;
 var object_created = false;
 
 var add_object = function () {
@@ -19,6 +33,14 @@ var add_object = function () {
                                 `</button>
                             `);
         $('#controll_panel').removeClass('hidden').addClass('show');
+        $('.input-group').popover({delay:{show: 200, hide: 20},
+                                    animation:true,
+                                    title:"Create an attribute",
+                                    trigger: "manual hover",
+                                    placement: "right",
+                                    content: "Create an attribute that will store information about the created object, e.g. 'Author'",
+                                    container:'body'
+                                    }).popover('toggle');
 };
 
 var insert_attribute = function(name) {
@@ -40,10 +62,23 @@ var insert_attribute = function(name) {
                          </div>
                          `
                         );
+        if (!! clicked ) {
+        $('.select-btn').popover({delay:{show: 200, hide: 20},
+                                    animation:true,
+                                    title:"Select elements",
+                                    trigger: "manual hover",
+                                    placement: "right",
+                                    content: "Select elements of the page that will be stored in this attribute",
+                                    container:'body'
+                                    }).popover('toggle');};
+
 };
 
 
 $('#add_object_button').click(function () {
+
+    $('#add_object_button').popover("destroy");
+
     $('#controll_panel').removeClass('show').addClass('hidden');
     $('.attribute').remove();
     $('#InitializeObject').removeClass('hidden').addClass('show');
@@ -58,12 +93,34 @@ var add_attr = function() {
          });
 
          $('.select-btn').click(function () {
+            if (!! clicked) {
+            $('div.parser_select:nth-child(2):first').popover({delay:{show: 200, hide: 20},
+                                    animation:true,
+                                    title:"Click on elements",
+                                    trigger: "manual hover",
+                                    placement: "left",
+                                    content: "Click on elements of the page that will be stored in this attribute",
+                                    container:'body'
+                                    }).popover('toggle');};
+
+//            setTimeout(function() {$('div.parser_select:nth-child(2):first').popover('destroy')}, 2000);
+
+            $('.select-btn').popover("destroy");
             var current_attribute_name = $(this).parents('.input-group-btn').siblings('.form-control').val().replace(' ', '');
             console.log('Current attribute:' + current_attribute_name);
             $(this).toggleClass('btn-warning').toggleClass('disabled').html('Done').toggleClass('selected_attr');
             var current_attribute = objects['objects'][current_attribute_name];
             $('.parser_select').addClass('on');
             $('.parser_select').click(function () {
+                var clicked = true;
+                $('div.parser_select:nth-child(2):first').popover('destroy');
+                if ( !!clicked ) { $('.select-btn').popover({delay:{show: 200, hide: 20},
+                        animation:true,
+                        title:"Save selection",
+                        trigger: "manual",
+                        placement: "bottom",
+                        container:'body'
+                        }).popover('toggle');};
                 var selector = '.' + $(this).children().attr('class').split(' ').join('.');
                 console.log('Current selector:' +  selector);
                 $('.parser_select').removeClass('active');
@@ -96,6 +153,7 @@ var add_attr = function() {
 
 $('.attr-btn').click(function(){
    $('#attributes').removeClass('hidden').addClass('show');
+   $('.input-group').popover("destroy");
    add_attr()
 });
 

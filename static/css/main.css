@@ -6,10 +6,6 @@
     background: #ff9e9b;
 }
 
-.external-site {
-    margin-top: 15px;
-}
-
 .parser_select {
     padding: 10px;
 }
@@ -46,6 +42,13 @@
 }
 
 
+/* Popover Header */
+.popover-title {
+    background-color: #3894b8;
+    color: #ffffff;
+    font-size: 21px;
+    text-align: center;
+}
 
 
 

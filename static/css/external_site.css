@@ -1,10 +1,26 @@
 .main {
     padding: 0;
     margin-top: -21px;
-};
+}
 
-iframe#external_site {
-    border: none;
-    height: 1000px;
-    width: 1000px;
-};
+.external-site {
+    border: 5px solid #2e6da4;
+    margin-top: 21px;
+    box-shadow: 0px 0px 19px -4px black inset;
+    border-radius: 1px;
+    padding-top: 16px;
+    background: #e8e8e8;
+}
+
+.disclaimer {
+    background-color: rgba(46, 109, 164, 0.89);
+    margin-top: 51px;
+}
+
+.disclaimer > p {
+    color: white;
+    margin-top: 12px;
+    position: initial;
+    font-weight: bold;
+    text-align: center;
+}
