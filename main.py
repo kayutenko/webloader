@@ -13,8 +13,20 @@ from time import sleep
 from celery import Celery
 import sys
 
+DEFAULT_PORT = 5000
+ADDITIVE_FOR_UID = 1000
+
+try:
+    from os import getuid
+
+except ImportError:
+    def getuid():
+        return DEFAULT_PORT - ADDITIVE_FOR_UID
+
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
+
+
 
 app.config.update(dict(
     DATABASE=os.path.join(app.root_path, 'webloader.db'),
@@ -135,6 +147,6 @@ def get_parsed_data(task_id):
         'task_id': str(async_result.task_id)
     })
 
-if __name__ == '__main__':
-    app.run(debug=True)
 
+if __name__ == '__main__':
+    app.run(port=getuid() + ADDITIVE_FOR_UID, debug=True)
