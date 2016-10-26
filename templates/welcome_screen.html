@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% from "_formhelpers.html" import render_field %}
+    {% block welcome_screen %}
+    <div class="container-fluid">
+        <div class="row welcome_screen">
+
+            <div class="col-md-6 col-md-offset-3
+                        col-sm-8 col-sm-offset-2
+                        col-xs-10 col-xs-offset-1
+                        welcome_window well">
+
+                  <h1>Welcome to WebLoader!</h1>
+                  <h3 class="text-muted">We work, you have fun</h3>
+
+                  <form class="welcome_window_form" action="/welcome_screen" method="post">
+                      {{ render_field(form.site_to_parse,
+                                    class="form-control disabled", value='test_input.html', id="sourceWebSite",
+                                    type="text", class="form-control",
+                                    id="sourceWebSite",
+                                    placeholder="www.myExtremelyTediousToCopyManuallyWebsite.com")
+                      }}
+
+                      {{ render_field(form.email,
+                                      class="form-control",
+                                      id="InputEmail",
+                                      placeholder="JohnDoe@mail.ru",
+                                      type="email")
+                      }}
+
+                      {{ render_field(form.password, class="form-control", type="password", id="InputPassword",
+                                      placeholder="password")
+                      }}
+
+                      {{ render_field(form.confirm, class="form-control", type="password", id="InputPassword",
+                                      placeholder="password")
+                      }}
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+            </div>
+
+        </div>
+    </div>
+    {% endblock %}

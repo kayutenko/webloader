@@ -1,0 +1,36 @@
+.sidebar {
+
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+    border-right: 1px solid #eee;
+    padding: 10px 20px;
+};
+
+.select-btn {
+    background: green;
+}
+
+
+#attributes {
+    min-height: 100px;
+    max-height: 300px;
+    overflow-y: auto;
+    margin: 0px -11px;
+    padding: 11px 10px 0px 10px;
+}
+
+#objects {
+    min-height: 100px;
+    max-height: 190px;
+    overflow-y: auto;
+    margin: 10px -11px;
+    padding: 11px 10px 0px 10px;
+
+}

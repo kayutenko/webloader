@@ -1,0 +1,63 @@
+.author {
+ background: #ddd ;
+}
+
+.complaint {
+    background: #ff9e9b;
+}
+
+.external-site {
+    margin-top: 15px;
+}
+
+.parser_select {
+    padding: 10px;
+}
+
+.parser_select.on:hover {
+    border: solid #337ab7 5px;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.parser_select.on:active, .parser_select.on.active  {
+     border: solid #5cb85c 5px;
+    border-radius: 2px;
+    padding: 5px;
+    background: #dff0d8;
+}
+
+.parser_select.on.active:hover  {
+     border: solid #5cb85c 5px;
+}
+
+.selected {
+    border: solid yellow 5px;
+    border-radius: 2px;
+    padding: 5px;
+    background: #dff0d8;
+}
+
+.parser_select .selected.active {
+    border: solid #5cb85c 5px;
+    border-radius: 2px;
+    padding: 5px;
+    background: #dff0d8;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

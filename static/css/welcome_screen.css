@@ -1,0 +1,14 @@
+.welcome_screen{
+    padding-top: 5%;
+}
+
+.welcome_window h1, h2, h3 {
+    text-align: center;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.welcome_window_form {
+    margin-top: 10px;
+    padding: 10px 15px 0px 15px;
+}

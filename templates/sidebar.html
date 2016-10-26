@@ -1,0 +1,56 @@
+{% from "_formhelpers.html" import render_field %}
+{% macro sidebar(site_to_parse, form) %}
+
+<div class="col-lg-2 col-md-3 col-sm-4 col-xs-4 sidebar">
+    <h3 class="center-block text-center">Menu</h3>
+
+    <form method="get" role="form" class="object">
+        <div class="form-group">
+            <button type="button" id="add_object_button" class="btn btn-primary btn-block">Add new object</button>
+        </div>
+
+        <div id="InitializeObject" class="hidden">
+            <div class="form-group">
+                <div class="input-group">
+                    <input class="form-control" type="text" placeholder="Object Name"  id="ObjectName" >
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary btn-success add_object" type="button">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                        </button>
+                    </span>
+
+                </div>
+            </div>
+        </div>
+        <div id="controll_panel" class="hidden">
+            <h4 class="center-block text-center">Attributes</h4>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-secondary attr-btn" type="button">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button>
+                    </span>
+                    <input class="form-control" type="text" placeholder="Attribute"  id="add_attr" >
+                </div>
+            </div>
+
+            <div id="attributes" class="well"></div>
+        </div>
+
+    </form>
+
+    <div id="objects" class="list-group hidden">
+        <h4 class="text-center center-block"> Objects </h4>
+
+    </div>
+
+    <div class="form-group">
+            <button type="button" id="finish_parsing_btn" class="btn btn-block hidden disabled btn-default">Finish Parsing</button>
+    </div>
+
+
+
+</div>
+{% endmacro %}

@@ -1,0 +1,40 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap-theme.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/welcome_screen.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/sidebar.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/external_site.css')}}">
+    <script src="{{url_for('static', filename='js/vendor/modernizr-2.8.3.min.js')}}"></script>
+</head>
+<body>
+
+    <nav class="navbar navbar-inverse navbar-default navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">WebParser(TM)</a>
+              <p class="navbar-text">Built to parse the sparse</p>
+              <p class="navbar-text navbar-right"> {{ current_user }}  </p>
+            </div>
+        </div>
+    </nav>
+
+    {% block main %}
+        {% block welcome_screen %} {% endblock %}
+    {% endblock %}
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{url_for('static', filename='js/vendor/jquery-1.11.2.min.js')}}"><\/script>')</script>
+<script src="{{url_for('static', filename='js/vendor/bootstrap.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/plugins.js')}}"></script>
+<script type=text/javascript> $SCRIPT_ROOT = {{ request.script_root|tojson|safe }}; </script>
+<script src="{{url_for('static', filename='js/main.js')}}"></script>
+</body>
+</html>
