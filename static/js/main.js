@@ -122,7 +122,7 @@ var add_attr = function() {
                 $('.select-btn').popover({delay:{show: 200, hide: 20},
                         animation:true,
                         title:"Save selection",
-                        trigger: "manual",
+                        trigger: "manual hover",
                         placement: "bottom",
                         container:'body'
                         }).popover('toggle');
