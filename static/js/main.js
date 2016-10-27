@@ -1,6 +1,11 @@
 $(document).ready(function() {
 $('[data-toggle="popover"]').popover();
 
+
+//$('.logout').click(function () {
+//    $.get('/logout', function(data){return false});
+//});
+
 $('#add_object_button').popover({delay:{show: 500, hide: 20},
                                     animation:true,
                                     title:"Create an object",
@@ -62,7 +67,7 @@ var insert_attribute = function(name) {
                          </div>
                          `
                         );
-        if (!! clicked ) {
+
         $('.select-btn').popover({delay:{show: 200, hide: 20},
                                     animation:true,
                                     title:"Select elements",
@@ -70,7 +75,7 @@ var insert_attribute = function(name) {
                                     placement: "right",
                                     content: "Select elements of the page that will be stored in this attribute",
                                     container:'body'
-                                    }).popover('toggle');};
+                                    }).popover('toggle');
 
 };
 
@@ -93,7 +98,7 @@ var add_attr = function() {
          });
 
          $('.select-btn').click(function () {
-            if (!! clicked) {
+
             $('div.parser_select:nth-child(2):first').popover({delay:{show: 200, hide: 20},
                                     animation:true,
                                     title:"Click on elements",
@@ -101,9 +106,9 @@ var add_attr = function() {
                                     placement: "left",
                                     content: "Click on elements of the page that will be stored in this attribute",
                                     container:'body'
-                                    }).popover('toggle');};
+                                    }).popover('toggle');
 
-//            setTimeout(function() {$('div.parser_select:nth-child(2):first').popover('destroy')}, 2000);
+            setTimeout(function() {$('div.parser_select:nth-child(2):first').popover('destroy')}, 2000);
 
             $('.select-btn').popover("destroy");
             var current_attribute_name = $(this).parents('.input-group-btn').siblings('.form-control').val().replace(' ', '');
@@ -114,13 +119,13 @@ var add_attr = function() {
             $('.parser_select').click(function () {
                 var clicked = true;
                 $('div.parser_select:nth-child(2):first').popover('destroy');
-                if ( !!clicked ) { $('.select-btn').popover({delay:{show: 200, hide: 20},
+                $('.select-btn').popover({delay:{show: 200, hide: 20},
                         animation:true,
                         title:"Save selection",
                         trigger: "manual",
                         placement: "bottom",
                         container:'body'
-                        }).popover('toggle');};
+                        }).popover('toggle');
                 var selector = '.' + $(this).children().attr('class').split(' ').join('.');
                 console.log('Current selector:' +  selector);
                 $('.parser_select').removeClass('active');

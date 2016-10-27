@@ -106,7 +106,7 @@ log = open('log.txt', 'w', encoding='utf-8')
 
 @app.route('/', methods=['GET', 'POST'])
 def hello_loader():
-    if session['logged_in']:
+    if session.get('logged_in'):
         db = get_db()
         data = db.execute("select email, site_to_parse from users order by id desc").fetchone()
         site_to_parse = data['site_to_parse']
@@ -127,6 +127,11 @@ def welcome_screen():
         return redirect("/")
     return render_template("welcome_screen.html", form=form)
 
+@app.route('/logout', methods=['GET', 'POST'])
+def logout():
+    session['logged_in'] = False
+    return redirect('/')
+
 @app.route('/get_parsing_config', methods=['POST'])
 def get_parsing_config():
     request.get_json()
@@ -138,7 +143,7 @@ def get_parsing_config():
 
 @celery.task
 def celery_parse_site():
-    return 'JR'
+    return 'Here the parsing results will appear'
 
 @app.route('/results/<task_id>')
 def get_parsed_data(task_id):
